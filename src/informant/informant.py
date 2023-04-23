@@ -2,7 +2,7 @@ import traceback
 from functools import wraps
 from typing import Any, Callable, Union
 
-from informant.messengers import Messenger
+from .messengers import Messenger
 
 # NOTE: what should the API look like? message strings to decorator or to messengers?
 # NOTE: should 'messengers' actually be 'targets'?
