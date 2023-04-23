@@ -2,7 +2,7 @@ import traceback
 from functools import wraps
 from typing import Any, Callable, Union
 
-from .messengers import Messenger
+from .types import Messenger, TaskInfo
 
 # NOTE: should 'messengers' actually be 'targets'?
 
@@ -17,27 +17,27 @@ class Informant:
         def decorator(func: Callable) -> Callable:
             @wraps(func)
             def wrapper(*args: Any, **kwargs: Any):
-                # NOTE: should this be a struct/dataclass?
-                vals = {
-                    "function": func.__name__,
-                    "header": "Task Status",
-                    "has_errored": None,
-                }
+                info = TaskInfo(
+                    name=func.__name__,
+                    header="Task Status",
+                )
 
                 try:
                     result = func(*args, **kwargs)
 
-                    vals["message"] = f"Task '{func.__name__}' finished successfully."
-                    vals["result"] = str(result)
-                    vals["has_errored"] = False
-                    self._notify_messengers(messengers, vals)
+                    info.message = f"Task '{func.__name__}' finished successfully."
+                    info.has_errored = False
+                    if send_result:
+                        info.result = str(result)
+                    self._notify_messengers(messengers, info)
 
                     return result
                 except Exception as e:
-                    vals["message"] = f"Task '{func.__name__}' finished with errors."
-                    vals["result"] = f"{e}\n\n{traceback.format_exc()}"
-                    vals["has_errored"] = True
-                    self._notify_messengers(messengers, vals)
+                    info.message = f"Task '{func.__name__}' finished with errors."
+                    info.has_errored = True
+                    if send_result:
+                        info.result = f"{e}\n\n{traceback.format_exc()}"
+                    self._notify_messengers(messengers, info)
 
                     raise e
 
@@ -45,9 +45,9 @@ class Informant:
 
         return decorator
 
-    def _notify_messengers(self, messengers, values) -> None:
+    def _notify_messengers(self, messengers, info: TaskInfo) -> None:
         if isinstance(messengers, list):
             for messenger in messengers:
-                messenger.notify(**values)
+                messenger.notify(info)
         else:
-            messengers.notify(**values)
+            messengers.notify(info)

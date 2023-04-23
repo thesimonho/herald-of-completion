@@ -1,7 +1,8 @@
-from messenger import Messenger
+from ..types import Messenger
 
 
-class EmailNotification(Messenger):
+# TODO: needs to handle both gmail and email more generally
+class GmailMessenger(Messenger):
     def __init__(self, recipient, sender, subject, body):
         self.recipient = recipient
         self.sender = sender
