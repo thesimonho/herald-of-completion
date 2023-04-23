@@ -1,16 +1,16 @@
 from plyer import notification
 
-from ..messengers import Messenger
+from ..types import Messenger, TaskInfo
 
 
 class DesktopMessenger(Messenger):
     def __init__(self):
         pass
 
-    def notify(self, **kwargs) -> None:
+    def notify(self, info: TaskInfo) -> None:
         opts = {
-            "title": kwargs["header"],
-            "message": kwargs["message"],
+            "title": info.header,
+            "message": info.message,
             "timeout": 10,
         }
         notification.notify(**opts)
