@@ -11,6 +11,6 @@ class DesktopMessenger(Messenger):
         opts = {
             "title": kwargs["header"],
             "message": kwargs["message"],
-            "timeout": 15,
+            "timeout": 10,
         }
         notification.notify(**opts)
