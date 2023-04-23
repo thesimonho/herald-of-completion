@@ -7,11 +7,10 @@ class DesktopMessenger(Messenger):
     def __init__(self):
         pass
 
-    def notify(self) -> None:
-        print("Desktop notification sent")
-        kwargs = {
-            "title": "title",
-            "message": "message",
-            "timeout": 5,
+    def notify(self, **kwargs) -> None:
+        opts = {
+            "title": kwargs["header"],
+            "message": kwargs["message"],
+            "timeout": 15,
         }
-        notification.notify(**kwargs)
+        notification.notify(**opts)
