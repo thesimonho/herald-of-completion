@@ -1,6 +1,6 @@
 from plyer import notification
 
-from informant.messengers import Messenger
+from ..messengers import Messenger
 
 
 class DesktopMessenger(Messenger):
