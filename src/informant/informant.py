@@ -4,7 +4,6 @@ from typing import Any, Callable, Union
 
 from .messengers import Messenger
 
-# NOTE: what should the API look like? message strings to decorator or to messengers?
 # NOTE: should 'messengers' actually be 'targets'?
 
 
@@ -13,40 +12,42 @@ class Informant:
         self.config = config
 
     def __call__(
-        self, messengers: Union[Messenger, list[Messenger]], send_result: bool = False
+        self, messengers: Union[Messenger, list[Messenger]], send_result: bool = True
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             @wraps(func)
             def wrapper(*args: Any, **kwargs: Any):
+                # NOTE: should this be a struct/dataclass?
+                vals = {
+                    "function": func.__name__,
+                    "header": "Task Status",
+                    "has_errored": None,
+                }
+
                 try:
-                    header = f"Task '{func.__name__}' has finished"
                     result = func(*args, **kwargs)
-                    has_errored = False
+
+                    vals["message"] = f"Task '{func.__name__}' finished successfully."
+                    vals["result"] = str(result)
+                    vals["has_errored"] = False
+                    self._notify_messengers(messengers, vals)
+
+                    return result
                 except Exception as e:
-                    header = e
-                    result = traceback.format_exc()
-                    has_errored = True
+                    vals["message"] = f"Task '{func.__name__}' finished with errors."
+                    vals["result"] = f"{e}\n\n{traceback.format_exc()}"
+                    vals["has_errored"] = True
+                    self._notify_messengers(messengers, vals)
 
-                opts = {"function": func.__name__, "has_errored": has_errored}
-
-                if send_result:
-                    opts["header"] = str(header)
-                    # HACK: match for class type desktopmessenger.
-                    # message needs to be <256 chars, but ONLY for desktop
-                    opts["message"] = str(result)[:256]
-                else:
-                    status = "successfully." if not has_errored else "with errors."
-                    opts["header"] = "Task Status"
-                    opts["message"] = f"Task '{func.__name__}' has finished {status}"
-
-                if isinstance(messengers, list):
-                    for messenger in messengers:
-                        messenger.notify(**opts)
-                else:
-                    messengers.notify(**opts)
-
-                return result
+                    raise e
 
             return wrapper
 
         return decorator
+
+    def _notify_messengers(self, messengers, values) -> None:
+        if isinstance(messengers, list):
+            for messenger in messengers:
+                messenger.notify(**values)
+        else:
+            messengers.notify(**values)
