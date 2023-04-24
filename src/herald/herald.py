@@ -7,7 +7,7 @@ from .types import Messenger, TaskInfo
 # NOTE: should 'messengers' actually be 'targets'?
 
 
-class Informant:
+class Herald:
     def __init__(self, config=None):
         self.config = config
 
