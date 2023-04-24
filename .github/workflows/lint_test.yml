@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install libnotify-bin libdbus-1-dev libdbus-glib-1-dev
+          sudo apt-get install libnotify-bin libnotify-cil-dev libdbus-1-dev libdbus-glib-1-dev
           python -m pip install --upgrade pip
           python -m pip install ruff pytest
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
