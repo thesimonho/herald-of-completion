@@ -4,8 +4,9 @@ from herald.messengers import DesktopMessenger, DiscordMessenger
 herald = Herald(secrets="tests/test.env")
 
 
-def test_desktop_has_no_secrets():
+def test_desktop_has_no_secrets(mocker):
     desktop = DesktopMessenger()
+    mocker.patch("herald.messengers.DesktopMessenger.notify", return_value=None)
 
     @herald(desktop)
     def get_list():
@@ -16,8 +17,9 @@ def test_desktop_has_no_secrets():
     assert desktop.__dict__ == {}
 
 
-def test_discord_has_url():
+def test_discord_has_url(mocker):
     discord = DiscordMessenger()
+    mocker.patch("herald.messengers.DiscordMessenger.notify", return_value=None)
 
     @herald(discord)
     def get_list():
