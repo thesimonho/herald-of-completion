@@ -12,7 +12,7 @@ class DiscordMessenger(Messenger):
 
     def notify(self, info: TaskInfo) -> None:
         data = {
-            "content": f"**{info.header}**\n{info.message}",
+            "content": f"**{info.header}**\n{info.message}\n```{info.result}```",
         }
 
         result = requests.post(self.webhook_url, json=data)

@@ -27,7 +27,7 @@ class Herald:
                 try:
                     result = func(*args, **kwargs)
 
-                    info.message = f"Task '{func.__name__}' finished successfully."
+                    info.message = f"Task `{func.__name__}` has finished successfully."
                     info.has_errored = False
                     if send_result:
                         info.result = str(result)
@@ -35,10 +35,10 @@ class Herald:
 
                     return result
                 except Exception as e:
-                    info.message = f"Task '{func.__name__}' finished with errors."
+                    info.message = f"Task `{func.__name__}` has finished with errors."
                     info.has_errored = True
                     if send_result:
-                        info.result = f"{e}\n\n{traceback.format_exc()}"
+                        info.result = str(traceback.format_exc())
                     self._notify_messengers(messengers, info)
 
                     raise e
