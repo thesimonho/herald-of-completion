@@ -1,3 +1,3 @@
-# Informant
+# Herald of Completion
 
-Keep yourself informed of task completion.
+Hark! The herald of completion has arrived ... to let you know when your long-running tasks are done.
