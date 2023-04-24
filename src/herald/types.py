@@ -7,6 +7,10 @@ class Messenger(ABC):
     """Abstract base class for all messengers."""
 
     @abstractmethod
+    def set_secrets(self, secrets: dict) -> None:
+        pass
+
+    @abstractmethod
     def notify(self, info) -> None:
         pass
 

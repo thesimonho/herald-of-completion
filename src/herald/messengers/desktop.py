@@ -7,6 +7,9 @@ class DesktopMessenger(Messenger):
     def __init__(self):
         pass
 
+    def set_secrets(self, secrets: dict) -> None:
+        pass
+
     def notify(self, info: TaskInfo) -> None:
         opts = {
             "title": info.header,

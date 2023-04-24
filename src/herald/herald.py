@@ -2,14 +2,16 @@ import traceback
 from functools import wraps
 from typing import Any, Callable, Union
 
+from dotenv import dotenv_values
+
 from .types import Messenger, TaskInfo
 
-# NOTE: should 'messengers' actually be 'targets'?
 # NOTE: observer pattern?
 
+
 class Herald:
-    def __init__(self, config=None):
-        self.config = config
+    def __init__(self, secrets: str = ".env"):
+        self.secrets = dotenv_values(secrets)
 
     def __call__(
         self, messengers: Union[Messenger, list[Messenger]], send_result: bool = True
@@ -48,6 +50,11 @@ class Herald:
     def _notify_messengers(self, messengers, info: TaskInfo) -> None:
         if isinstance(messengers, list):
             for messenger in messengers:
+                self._set_messenger_secrets(messenger)
                 messenger.notify(info)
         else:
+            self._set_messenger_secrets(messengers)
             messengers.notify(info)
+
+    def _set_messenger_secrets(self, messenger: Messenger) -> None:
+        messenger.set_secrets(self.secrets)
