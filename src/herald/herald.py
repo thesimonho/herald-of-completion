@@ -1,6 +1,6 @@
 import traceback
 from functools import wraps
-from typing import Any, Callable, Union
+from typing import Any, Callable, List, Union
 
 from dotenv import dotenv_values
 
@@ -15,7 +15,7 @@ class Herald:
         self.secrets: dict = dotenv_values(secrets)
 
     def __call__(
-        self, messengers: Union[Messenger, list[Messenger]], send_result: bool = True
+        self, messengers: Union[Messenger, List[Messenger]], send_result: bool = True
     ) -> Callable:
         def decorator(func: Callable) -> Callable:
             @wraps(func)
@@ -49,7 +49,7 @@ class Herald:
         return decorator
 
     def _notify_messengers(
-        self, messengers: Union[Messenger, list[Messenger]], info: TaskInfo
+        self, messengers: Union[Messenger, List[Messenger]], info: TaskInfo
     ) -> None:
         if isinstance(messengers, list):
             for messenger in messengers:
