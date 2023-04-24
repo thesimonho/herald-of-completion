@@ -5,5 +5,10 @@ Hark! The herald of completion has arrived ... to let you know when your long-ru
 ## Installation
 
 ```
-    pip install herald-of-completion
+pip install herald-of-completion
 ```
+
+## Contribution
+
+Formatter: `black`
+Tests: `pytest`
