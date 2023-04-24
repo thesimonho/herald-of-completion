@@ -23,8 +23,7 @@ def test_function_complete():
         x = [1, 2, 3]
         return x
 
-    result = get_list()
-    return result
+    get_list()
 
 
 def test_function_error():
@@ -34,8 +33,7 @@ def test_function_error():
         return x[len(x) + 1]
 
     with pytest.raises(IndexError):
-        result = get_item()
-        return result
+        get_item()
 
 
 def test_secrets_are_loaded():
