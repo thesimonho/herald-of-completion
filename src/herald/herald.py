@@ -7,11 +7,12 @@ from dotenv import dotenv_values
 from .types import Messenger, TaskInfo
 
 # NOTE: observer pattern?
+# TODO: allow customizable messages for each messenger
 
 
 class Herald:
     def __init__(self, secrets: str = ".env"):
-        self.secrets = dotenv_values(secrets)
+        self.secrets: dict = dotenv_values(secrets)
 
     def __call__(
         self, messengers: Union[Messenger, list[Messenger]], send_result: bool = True
@@ -47,7 +48,9 @@ class Herald:
 
         return decorator
 
-    def _notify_messengers(self, messengers, info: TaskInfo) -> None:
+    def _notify_messengers(
+        self, messengers: Union[Messenger, list[Messenger]], info: TaskInfo
+    ) -> None:
         if isinstance(messengers, list):
             for messenger in messengers:
                 self._set_messenger_secrets(messenger)

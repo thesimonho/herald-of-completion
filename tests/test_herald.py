@@ -1,5 +1,3 @@
-from collections import OrderedDict
-
 import pytest
 
 from herald import Herald
@@ -41,7 +39,7 @@ def test_function_error():
 
 
 def test_secrets_are_loaded():
-    assert type(herald.secrets) is OrderedDict
+    assert isinstance(herald.secrets, dict)
 
 
 def test_messenger_secrets_are_set():
