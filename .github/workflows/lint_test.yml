@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          python -m pip install ruff pytest pytest-mock
+          python -m pip install ruff pytest pytest-mock pytest-cov
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           pip install -e .
       - name: Lint with ruff
@@ -29,4 +29,4 @@ jobs:
           ruff --format=github --select=E9,F63,F7,F82 --ignore=F401 --target-version=py37 .
       - name: Test with pytest
         run: |
-          pytest
+          pytest --cov=./
