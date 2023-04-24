@@ -22,7 +22,7 @@ class Herald:
             def wrapper(*args: Any, **kwargs: Any):
                 info = TaskInfo(
                     name=func.__name__,
-                    header="Task Status",
+                    header="Herald: Task Status",
                 )
 
                 try:
@@ -31,7 +31,7 @@ class Herald:
                     info.message = f"Task `{func.__name__}` has finished successfully."
                     info.has_errored = False
                     if send_result:
-                        info.result = str(result)
+                        info.result = f"```\n{str(result)}\n```"
                     self._notify_messengers(messengers, info)
 
                     return result
@@ -39,7 +39,7 @@ class Herald:
                     info.message = f"Task `{func.__name__}` has finished with errors."
                     info.has_errored = True
                     if send_result:
-                        info.result = str(traceback.format_exc())
+                        info.result = f"```\n{str(traceback.format_exc())}\n```"
                     self._notify_messengers(messengers, info)
 
                     raise e
