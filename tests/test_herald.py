@@ -6,7 +6,7 @@ from herald.types import Messenger
 herald = Herald(secrets="tests/test.env")
 
 
-class TestMessenger(Messenger):
+class DummyMessenger(Messenger):
     def __init__(self):
         self.secrets = None
 
@@ -18,7 +18,7 @@ class TestMessenger(Messenger):
 
 
 def test_function_complete():
-    @herald(TestMessenger())
+    @herald(DummyMessenger())
     def get_list():
         x = [1, 2, 3]
         return x
@@ -28,7 +28,7 @@ def test_function_complete():
 
 
 def test_function_error():
-    @herald(TestMessenger())
+    @herald(DummyMessenger())
     def get_item():
         x = [1, 2, 3]
         return x[len(x) + 1]
@@ -43,7 +43,7 @@ def test_secrets_are_loaded():
 
 
 def test_messenger_secrets_are_set():
-    test_messenger = TestMessenger()
+    test_messenger = DummyMessenger()
     herald._set_messenger_secrets(test_messenger)
     assert test_messenger.secrets is not None
     assert len(test_messenger.secrets) > 0
