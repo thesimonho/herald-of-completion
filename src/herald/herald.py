@@ -4,13 +4,15 @@ This module and class should be imported and used to create a new decorator inst
 
 Typical usage example:
 
-  from herald import Herald
+.. code-block:: python
 
-  herald = Herald(".env")
+   from herald import Herald
 
-  @herald(...)
-  def my_function():
-      ...
+   herald = Herald(".env")
+
+   @herald(...)
+   def my_function():
+       pass
 """
 import traceback
 from functools import wraps

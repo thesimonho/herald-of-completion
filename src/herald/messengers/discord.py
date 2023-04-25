@@ -5,15 +5,17 @@ This module defines the Discord messenger class, which is used to send
 
 Typical usage example:
 
-  from herald import Herald
-  from herald.messengers import DiscordMessenger
+.. code-block:: python
+    
+   from herald import Herald
+   from herald.messengers import DiscordMessenger
 
-  herald = Herald(".env")
-  discord = DiscordMessenger()
+   herald = Herald(".env")
+   discord = DiscordMessenger()
 
-  @herald(discord)
-  def my_function():
-      ...
+   @herald(discord)
+   def my_function():
+       pass
 """
 
 import requests
@@ -22,7 +24,11 @@ from ..types import Messenger, TaskInfo
 
 
 class DiscordMessenger(Messenger):
-    """A class used to send Discord notifications."""
+    """A class used to send Discord notifications.
+
+    Attributes:
+        webhook_url: String containing the URL for the Discord webhook.
+    """
 
     def __init__(self):
         """Initializes the DiscordMessenger class."""

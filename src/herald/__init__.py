@@ -1,4 +1,3 @@
-"""Useds to import the Herald class and type information for easier importing."""
 from .herald import Herald
 from .types import TaskInfo
 

@@ -5,15 +5,17 @@ This module defines the Desktop messenger class, which is used to send
 
 Typical usage example:
 
-  from herald import Herald
-  from herald.messengers import DesktopMessenger
+.. code-block:: python
 
-  herald = Herald(".env")
-  desktop = DesktopMessenger()
+   from herald import Herald
+   from herald.messengers import DesktopMessenger
 
-  @herald(desktop)
-  def my_function():
-      ...
+   herald = Herald(".env")
+   desktop = DesktopMessenger()
+
+   @herald(desktop)
+   def my_function():
+       pass
 """
 from plyer import notification
 

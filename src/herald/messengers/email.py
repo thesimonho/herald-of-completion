@@ -5,15 +5,17 @@ This module defines the Email messenger class, which is used to send
 
 Typical usage example:
 
-  from herald import Herald
-  from herald.messengers import EmailMessenger
+.. code-block:: python
+    
+   from herald import Herald
+   from herald.messengers import EmailMessenger
 
-  herald = Herald(".env")
-  email = EmailMessenger()
+   herald = Herald(".env")
+   email = EmailMessenger()
 
-  @herald(email)
-  def my_function():
-      ...
+   @herald(email)
+   def my_function():
+      pass
 """
 
 import smtplib
