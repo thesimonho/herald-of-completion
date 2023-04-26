@@ -43,6 +43,8 @@ def my_function():                           # messengers (e.g. email) can be re
     return a[100]  # if an exception is raised, `send_result=True` will also send the traceback
 ```
 
+Full API documentation can be found here: [Documentation](https://sho-87.github.io/herald-of-completion/)
+
 ### .env settings
 
 Some messengers require credentials and/or additional settings to work. These values are stored in a `.env` file.
