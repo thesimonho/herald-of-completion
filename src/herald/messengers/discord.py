@@ -26,13 +26,13 @@ from ..types import Messenger, TaskInfo
 class DiscordMessenger(Messenger):
     """A class used to send Discord notifications.
 
-    Attributes:
+    Args:
         webhook_url: String containing the URL for the Discord webhook.
     """
 
     def __init__(self):
         """Initializes the DiscordMessenger class."""
-        self.webhook_url = ""
+        self.webhook_url: str = ""
 
     def set_secrets(self, secrets: dict) -> None:
         """Sets the secrets for the DiscordMessenger class.
@@ -48,8 +48,8 @@ class DiscordMessenger(Messenger):
         """Constructs and sends a Discord notification.
 
         Args:
-            info: TaskInfo object containing information about the task that was run.
-              Contents should be used to construct the notification.
+            info: TaskInfo object containing information about the task that was run. \
+            Contents should be used to construct the notification.
 
         Raises:
             HTTPError: An error occurred while making the HTTP request.

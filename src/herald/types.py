@@ -9,7 +9,7 @@ from dataclasses import dataclass
 class TaskInfo:
     """Dataclass that holds information about a task.
 
-    Attributes:
+    Args:
         name: A string containing the name of the function being run.
         header: A string containing a summary line for the notification header.
         message: A string containing the main body of the notification message.
@@ -45,7 +45,7 @@ class Messenger(ABC):
         This method is abstract and must be implemented by all subclasses.
 
         Args:
-            info: TaskInfo object containing information about the function that can be
-              used to construct the notification message.
+            info: TaskInfo object containing information about the function that can \
+            be used to construct the notification message.
         """
         pass

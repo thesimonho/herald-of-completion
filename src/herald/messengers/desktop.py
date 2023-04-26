@@ -32,8 +32,8 @@ class DesktopMessenger(Messenger):
     def set_secrets(self, secrets: dict) -> None:
         """Sets the secrets for the DesktopMessenger class.
 
-        Must be implemented as a result of inheriting from the Messenger class.
-          However, the DesktopMessenger itself does not require any secrets.
+        Must be implemented as a result of inheriting from the Messenger class. \
+        However, the DesktopMessenger itself does not require any secrets.
 
         Args:
             secrets: A dictionary of secrets to be used by the messenger.
@@ -44,8 +44,8 @@ class DesktopMessenger(Messenger):
         """Constructs and sends a desktop notification using the function information.
 
         Args:
-            info: TaskInfo object containing information about the function.
-              Contents should be used to construct the notification message.
+            info: TaskInfo object containing information about the function. \
+            Contents should be used to construct the notification message.
         """
         opts = {
             "title": info.header,

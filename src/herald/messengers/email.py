@@ -29,7 +29,7 @@ from ..types import Messenger, TaskInfo
 class EmailMessenger(Messenger):
     """A class for sending notifications via email.
 
-    Attributes:
+    Args:
         recipient: String containing the email address of the recipient.
         smtp_server: String containing the SMTP server address.
         smtp_port: Integer containing the SMTP server port.
@@ -55,7 +55,7 @@ class EmailMessenger(Messenger):
         """Sets the secrets for the EmailMessenger.
 
         Secrets required are the SMTP details for the server that will be
-          sending the email.
+        sending the email.
 
         Args:
             secrets: A dictionary containing the secrets for the EmailMessenger.
@@ -70,8 +70,8 @@ class EmailMessenger(Messenger):
         """Creates and sends an email with the given TaskInfo.
 
         Args:
-            info: TaskInfo object containing the information to be sent.
-              Contents should be used to create the email.
+            info: TaskInfo object containing the information to be \
+            sent. Contents should be used to create the email.
 
         Raises:
             SMTPException: An error occurred while sending the email.

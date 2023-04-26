@@ -30,10 +30,10 @@ from .types import Messenger, TaskInfo
 class Herald:
     """Class for creating a decorator instance.
 
-    This class is used to set up the decorator with the .env file.
+    This class is used to set up the decorator with the .env file. \
     The resulting decorator can be used to decorate long-running functions.
 
-    Attributes:
+    Args:
         secrets: Dictionary containing the secrets from the .env file.
     """
 
