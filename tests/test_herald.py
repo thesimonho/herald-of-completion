@@ -1,6 +1,6 @@
 import pytest
 
-from herald import Herald
+from herald.decorators import Herald
 from herald.types import Messenger
 
 herald = Herald(secrets="tests/test.env")

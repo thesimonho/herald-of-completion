@@ -1,4 +1,4 @@
-from herald import Herald
+from herald.decorators import Herald
 from herald.messengers import DesktopMessenger, DiscordMessenger
 
 herald = Herald(secrets="tests/test.env")

@@ -1,13 +1,13 @@
 """Module for the Email messenger.
 
 This module defines the Email messenger class, which is used to send
-  notifications via email.
+notifications via email.
 
 Typical usage example:
 
 .. code-block:: python
     
-   from herald import Herald
+   from herald.decorators import Herald
    from herald.messengers import EmailMessenger
 
    herald = Herald(".env")

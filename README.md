@@ -23,7 +23,7 @@ pip install herald-of-completion
 Wrap the `@herald` decorator around the function you want to be notified about:
 
 ```python
-from herald import Herald
+from herald.decorators import Herald
 from herald.messengers import DiscordMessenger, EmailMessenger
 
 herald = Herald(".env")  # Specify location of your .env settings file

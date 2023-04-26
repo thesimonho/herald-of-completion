@@ -1,13 +1,13 @@
 """Module for the Desktop messenger.
 
 This module defines the Desktop messenger class, which is used to send
-  OS-native desktop notifications.
+OS-native desktop notifications.
 
 Typical usage example:
 
 .. code-block:: python
 
-   from herald import Herald
+   from herald.decorators import Herald
    from herald.messengers import DesktopMessenger
 
    herald = Herald(".env")

@@ -6,7 +6,7 @@ Typical usage example:
 
 .. code-block:: python
 
-   from herald import Herald
+   from herald.decorators import Herald
 
    herald = Herald(".env")
 
