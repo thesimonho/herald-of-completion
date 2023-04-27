@@ -1,9 +1,9 @@
 # Herald of Completion
 
-![Version](https://img.shields.io/github/v/release/sho-87/herald-of-completion?include_prereleases&sort=semver)
-![pypi](https://img.shields.io/pypi/pyversions/herald-of-completion)
+[![Version](https://img.shields.io/github/v/release/sho-87/herald-of-completion?include_prereleases&sort=semver)](https://pypi.org/project/herald-of-completion/)
+[![pypi](https://img.shields.io/pypi/pyversions/herald-of-completion)](https://pypi.org/project/herald-of-completion/)
 ![CI](https://img.shields.io/github/actions/workflow/status/sho-87/herald-of-completion/lint_test.yml?branch=develop)
-![Issues](https://img.shields.io/github/issues/sho-87/herald-of-completion)
+[![Issues](https://img.shields.io/github/issues/sho-87/herald-of-completion)](https://github.com/sho-87/herald-of-completion/issues)
 [![Donate](https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-blue "Donate")](https://www.buymeacoffee.com/simonho)
 
 Hark! The herald of completion has arrived ... to let you know when your long-running tasks are done.
@@ -24,26 +24,53 @@ Wrap the `@herald` decorator around the function you want to be notified about:
 
 ```python
 from herald.decorators import Herald
-from herald.messengers import DiscordMessenger, EmailMessenger
+from herald.messengers import DiscordMessenger
 
 herald = Herald(".env")  # Specify location of your .env settings file
                          # herald is the name of your decorator
 
-discord = DiscordMessenger()                   # create a new messenger
-email = EmailMessenger("recipient@email.com")  # some messengers take arguments
+discord = DiscordMessenger()  # create a new messenger
 
-@herald(email)  # wrap decorator around the function, with the messenger you want to use
+@herald(discord)  # wrap decorator around the function, with the messenger you want to use
 def my_function():
     a = [1, 2, 3]
     return a
+```
 
-@herald([email, discord], send_result=True)  # multiple messengers can be used at the same time
-def my_function():                           # messengers (e.g. email) can be re-used
+You can send multiple messengers at the same time:
+
+```python
+from herald.decorators import Herald
+from herald.messengers import DiscordMessenger, EmailMessenger
+
+herald = Herald(".env")
+
+discord = DiscordMessenger()
+email = EmailMessenger("recipient@email.com")  # some messengers take arguments
+
+@herald([discord, email])  # multiple messengers can be used at the same time
+def my_function():
+    a = [1, 2, 3]
+    return a
+```
+
+Passing `send_result=True` to the decorator will send the return value of your function through the messenger. This also includes notifying you of any exceptions that were raised:
+
+```python
+from herald.decorators import Herald
+from herald.messengers import DiscordMessenger
+
+herald = Herald(".env")
+
+discord = DiscordMessenger()
+
+@herald(discord, send_result=True)
+def my_function():
     a = [1, 2, 3]
     return a[100]  # if an exception is raised, `send_result=True` will also send the traceback
 ```
 
-Full API documentation can be found here: [Documentation](https://sho-87.github.io/herald-of-completion/)
+For more details, the full API documentation can be found here: [Documentation](https://sho-87.github.io/herald-of-completion/)
 
 ### .env settings
 
