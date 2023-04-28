@@ -1,10 +1,10 @@
-Herald of Completion
+.. include:: ../../README.md
+   :parser: myst_parser.sphinx_
+
 =================================
 
 .. automodule:: herald
   :members:
-
--------------------
 
 Modules
 =======

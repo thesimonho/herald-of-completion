@@ -129,4 +129,4 @@ Tests should be run using `pytest`.
 
 The project is formatted using the `black` formatter.
 
-Docstrings should follow the [Google style](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings). This will help with automatic generation of documentation.
+Docstrings should follow the [Google style](https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings) (with a few tweaks to help with Sphinx generation of documentation pages). Use the docstrings throughout the codebase as a guide.

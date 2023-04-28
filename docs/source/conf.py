@@ -36,6 +36,7 @@ extensions = [
     "sphinx.ext.napoleon",
     "sphinx.ext.githubpages",
     "sphinx.ext.viewcode",
+    "myst_parser",
 ]
 autosummary_generate = True
 add_module_names = False
