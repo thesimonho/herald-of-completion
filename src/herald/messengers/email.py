@@ -25,7 +25,9 @@ from email.message import EmailMessage
 from ..types import Messenger, TaskInfo
 
 
-# TODO: validate email address. probably good to have an email type
+# TODO: validate email address on init? new dataclass?
+# TODO: add test
+# TODO: check email exists (and correct) before notifying
 class EmailMessenger(Messenger):
     """A class for sending notifications via email.
 

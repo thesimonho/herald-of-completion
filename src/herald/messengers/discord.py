@@ -22,7 +22,8 @@ import requests
 
 from ..types import Messenger, TaskInfo
 
-
+# TODO: validate url. add test
+# TODO: check url exists (and correct) before notifying
 class DiscordMessenger(Messenger):
     """A class used to send Discord notifications.
 
