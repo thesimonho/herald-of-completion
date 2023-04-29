@@ -117,6 +117,8 @@ Creating a new messenger is straightforward and requires only 1 file:
 4. Those methods define how your messenger sets it's secret values, and how it uses those settings to send a notification
 5. Finally, import your messenger in the `__init__.py` file [here](https://github.com/sho-87/herald-of-completion/blob/develop/src/herald/messengers/__init__.py). This shortens the import path for users.
 
+The `notify()` method of your messenger will receive a [TaskInfo](https://github.com/sho-87/herald-of-completion/blob/master/src/herald/types.py) dataclass object. You can use the dataclass' fields (e.g. `name`, `header`) to construct custom notification messages.
+
 **Note**: Pull requests should be made to the `develop` branch.
 
 ### Tests

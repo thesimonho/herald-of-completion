@@ -9,6 +9,10 @@ from dataclasses import dataclass
 class TaskInfo:
     """Dataclass that holds information about a task.
 
+    An instance of this class is passed to the notify method of all messengers. \
+    If creating a custom messenger, you can use these fields to construct a \
+    notification message.
+
     Args:
         name: A string containing the name of the function being run.
         header: A string containing a summary line for the notification header.

@@ -26,7 +26,6 @@ from .types import Messenger, TaskInfo
 # TODO: add notes on using messengers directly, without a decorator
 # TODO: notify passed args/kwargs option
 # TODO: allow customizable messages for each messenger
-# TODO: add info about TaskInfo contents to docs/README (contrib section)
 
 
 class Herald:
