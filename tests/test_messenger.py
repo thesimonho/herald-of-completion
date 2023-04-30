@@ -3,8 +3,9 @@ import pytest
 from herald.decorators import Herald
 from herald.messengers import (DesktopMessenger, DiscordMessenger,
                                EmailMessenger)
+from herald.types import Secrets
 
-herald = Herald(secrets="tests/test.env")
+herald = Herald(env="tests/test.env")
 
 
 def test_desktop_has_no_secrets(mocker):
@@ -47,15 +48,15 @@ def test_discord_has_url(mocker):
 
 def test_discord_url_correct():
     discord = DiscordMessenger()
-    discord.set_secrets({"WEBHOOK_URL": "http://discord.com/api/webhooks/12"})
-    discord.set_secrets({"WEBHOOK_URL": "https://discord.com/api/webhooks/12"})
+    discord.set_secrets(Secrets(webhook_url="http://discord.com/api/webhooks/12"))
+    discord.set_secrets(Secrets(webhook_url="https://discord.com/api/webhooks/12"))
 
 
 def test_discord_url_incorrect():
     discord = DiscordMessenger()
 
     with pytest.raises(ValueError):
-        discord.set_secrets({"WEBHOOK_URL": "https://discord.com/api/webhooks"})
+        discord.set_secrets(Secrets(webhook_url="https://discord.com/api/webhooks"))
 
     with pytest.raises(ValueError):
-        discord.set_secrets({"WEBHOOK_URL": "discord.com/api/webhooks/12"})
+        discord.set_secrets(Secrets(webhook_url="discord.com/api/webhooks/12"))

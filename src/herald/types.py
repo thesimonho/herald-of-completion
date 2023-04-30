@@ -3,7 +3,26 @@ from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from typing import Union
 
-# NOTE: dataclass for secrets
+
+@dataclass
+class Secrets:
+    """Dataclass that holds all secrets needed for messengers.
+
+    Args:
+        webhook_url: A string containing the webhook url for a Discord messenger.
+        smtp_server: A string containing the smtp server for an email messenger.
+        smtp_port: An integer containing the smtp port for an email messenger.
+        smtp_starttls: Boolean indicating whether to use starttls for an emails.
+        smtp_user: A string containing the username for an email messenger.
+        smtp_password: A string containing the password for an email messenger.
+    """
+
+    webhook_url: str = ""
+    smtp_server: str = ""
+    smtp_port: int = -1
+    smtp_starttls: bool = True
+    smtp_user: str = ""
+    smtp_password: str = ""
 
 
 @dataclass
@@ -43,7 +62,7 @@ class Messenger(ABC):
     """Abstract base class for all messengers."""
 
     @abstractmethod
-    def set_secrets(self, secrets: dict) -> None:
+    def set_secrets(self, secrets: Secrets) -> None:
         """Receive and set secrets used for the messenger.
 
         This method is abstract and must be implemented by all subclasses.

@@ -18,11 +18,8 @@ import traceback
 from functools import wraps
 from typing import Any, Callable, List, Union
 
-from dotenv import dotenv_values
-
-from .types import Messenger, TaskInfo
-
-# NOTE: observer pattern?
+from .types import Messenger, Secrets, TaskInfo
+from .utils import load_secrets
 
 
 class Herald:
@@ -32,16 +29,16 @@ class Herald:
     The resulting decorator can be used to decorate long-running functions.
 
     Args:
-        secrets: Dictionary containing the secrets from the .env file.
+        secrets: Secrets object containing the secrets from the .env file.
     """
 
-    def __init__(self, secrets: str = ".env"):
+    def __init__(self, env: str = ".env"):
         """Initializes the instance with the .env file.
 
         Args:
-            secrets: String containing the path to the .env file.
+            env: String containing the path to the .env file.
         """
-        self.secrets: dict = dotenv_values(secrets)
+        self.secrets: Secrets = load_secrets(env)
 
     def __call__(
         self,

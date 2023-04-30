@@ -4,7 +4,7 @@ from typing import List, TypeVar, Union
 
 from dotenv import dotenv_values
 
-from .types import Messenger, TaskInfo
+from .types import Messenger, Secrets, TaskInfo
 
 T = TypeVar("T")
 
@@ -81,6 +81,24 @@ def build_kwarg_string(kwargs: dict, truncate_length: int = 10) -> str:
     return result
 
 
+def load_secrets(env: str = ".env") -> Secrets:
+    """Load secrets from a .env file.
+
+    The contents of the .env file are stored in a Secrets object.
+
+    Args:
+        env: Path to the .env file.
+    """
+    try:
+        env_dict = dotenv_values(env)
+        lowered = {k.lower(): v for k, v in env_dict.items()}
+        secrets = Secrets(**lowered)
+    except FileNotFoundError:
+        secrets = Secrets()
+
+    return secrets
+
+
 def send_notification(
     messengers: Union[Messenger, List[Messenger]], info: TaskInfo, env: str = ".env"
 ) -> None:
@@ -95,10 +113,7 @@ def send_notification(
         info: TaskInfo object containing information to send in the notification.
         env: Path to the .env file containing the secrets to use.
     """
-    try:
-        secrets = dotenv_values(env)
-    except FileNotFoundError:
-        secrets = {}
+    secrets = load_secrets(env)
 
     if isinstance(messengers, list):
         for messenger in messengers:

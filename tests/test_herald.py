@@ -1,9 +1,9 @@
 import pytest
 
 from herald.decorators import Herald
-from herald.types import Messenger
+from herald.types import Messenger, Secrets
 
-herald = Herald(secrets="tests/test.env")
+herald = Herald(env="tests/test.env")
 
 
 class DummyMessenger(Messenger):
@@ -37,11 +37,11 @@ def test_function_error():
 
 
 def test_secrets_are_loaded():
-    assert isinstance(herald.secrets, dict)
+    assert isinstance(herald.secrets, Secrets)
 
 
 def test_messenger_secrets_are_set():
     test_messenger = DummyMessenger()
     herald._set_messenger_secrets(test_messenger)
     assert test_messenger.secrets is not None
-    assert len(test_messenger.secrets) > 0
+    assert test_messenger.secrets == herald.secrets

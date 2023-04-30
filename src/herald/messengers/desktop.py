@@ -19,7 +19,7 @@ Typical usage example:
 """
 from plyer import notification
 
-from ..types import Messenger, TaskInfo
+from ..types import Messenger, TaskInfo, Secrets
 
 
 class DesktopMessenger(Messenger):
@@ -29,14 +29,14 @@ class DesktopMessenger(Messenger):
         """Initializes the DesktopMessenger class."""
         pass
 
-    def set_secrets(self, secrets: dict) -> None:
+    def set_secrets(self, secrets: Secrets) -> None:
         """Sets the secrets for the DesktopMessenger class.
 
         Must be implemented as a result of inheriting from the Messenger class. \
         However, the DesktopMessenger itself does not require any secrets.
 
         Args:
-            secrets: A dictionary of secrets to be used by the messenger.
+            secrets: Secrets to be used by the messenger.
         """
         pass
 

@@ -110,7 +110,7 @@ Some messengers require credentials and/or additional settings to work. These va
 
 Pass the location of this file to the `Herald` constructor, which will pass the values down to your messengers.
 
-The `.env` file should look something like this. You only need settings for the messengers you want to use:
+The `.env` file should look something like [this](https://github.com/sho-87/herald-of-completion/blob/master/tests/test.env). You only need settings for the messengers you want to use:
 
 ```text
 # Discord settings

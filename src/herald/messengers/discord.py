@@ -22,7 +22,7 @@ import re
 
 import requests
 
-from ..types import Messenger, TaskInfo
+from ..types import Messenger, Secrets, TaskInfo
 from ..utils import build_arg_string, build_kwarg_string
 
 
@@ -41,15 +41,15 @@ class DiscordMessenger(Messenger):
         """Initializes the DiscordMessenger class."""
         self.webhook_url: str = ""
 
-    def set_secrets(self, secrets: dict) -> None:
+    def set_secrets(self, secrets: Secrets) -> None:
         """Sets the secrets for the DiscordMessenger class.
 
         The only secret required is the webhook URL.
 
         Args:
-            secrets: A dictionary containing the secrets to be used by the messenger.
+            secrets: Secrets to be used by the messenger.
         """
-        url = secrets["WEBHOOK_URL"]
+        url = secrets.webhook_url
         if re.fullmatch(r"^http[s]?:\/\/discord.com\/api\/webhooks\/.*$", url) is None:
             raise ValueError("Invalid webhook url.")
         else:

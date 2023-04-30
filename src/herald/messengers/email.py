@@ -23,7 +23,7 @@ import smtplib
 import ssl
 from email.message import EmailMessage
 
-from ..types import Messenger, TaskInfo
+from ..types import Messenger, Secrets, TaskInfo
 from ..utils import build_arg_string, build_kwarg_string
 
 
@@ -60,20 +60,20 @@ class EmailMessenger(Messenger):
         ):
             raise ValueError("Invalid email address.")
 
-    def set_secrets(self, secrets: dict) -> None:
+    def set_secrets(self, secrets: Secrets) -> None:
         """Sets the secrets for the EmailMessenger.
 
         Secrets required are the SMTP details for the server that will be
         sending the email.
 
         Args:
-            secrets: A dictionary containing the secrets for the EmailMessenger.
+            secrets: Secrets for the EmailMessenger.
         """
-        self.smtp_server = secrets["SMTP_SERVER"]
-        self.smtp_port = secrets["SMTP_PORT"]
-        self.smtp_starttls = secrets["SMTP_STARTTLS"]
-        self.smtp_user = secrets["SMTP_USER"]
-        self.smtp_password = secrets["SMTP_PASSWORD"]
+        self.smtp_server = secrets.smtp_server
+        self.smtp_port = secrets.smtp_port
+        self.smtp_starttls = secrets.smtp_starttls
+        self.smtp_user = secrets.smtp_user
+        self.smtp_password = secrets.smtp_password
 
     def notify(self, info: TaskInfo) -> None:
         """Creates and sends an email with the given TaskInfo.
