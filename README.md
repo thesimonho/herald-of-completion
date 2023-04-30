@@ -83,7 +83,7 @@ my_function("Hello", var2="world")  # function call will be notified with all ar
 
 There may be times where you want to send a notification without using a decorator / tying it to a specific function.
 
-A utility function, `send_notification()` can be used for this purpose. To use this, you'll need to construct your own `TaskInfo` object containing the notification contents:
+A utility function, `send_notification()`, can be used for this purpose. To use this, you'll need to construct your own `TaskInfo` object (see: [fields](https://github.com/sho-87/herald-of-completion/blob/master/src/herald/types.py)) containing the notification contents:
 
 ```python
 from herald.types import TaskInfo
