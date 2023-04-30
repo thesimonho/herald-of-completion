@@ -75,13 +75,12 @@ class DiscordMessenger(Messenger):
             call = f"{info.name}()"
 
         if info.has_errored:
-            msg_content += (
-                f"Task has failed with an error.\n\nFunction call:\n```{call}```"
-            )
+            msg_content += "Task has failed with an error.\n"
         else:
-            msg_content += (
-                f"Task has completed successfully.\n\nFunction call:\n```{call}```"
-            )
+            msg_content += "Task has completed successfully.\n"
+
+        if info.send_function:
+            msg_content += f"\nFunction:\n```{call}```"
 
         if info.send_result:
             msg_content += f"\nResult:\n```{info.result}```"

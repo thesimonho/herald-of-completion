@@ -48,6 +48,7 @@ class Herald:
         self,
         messengers: Union[Messenger, List[Messenger]],
         send_result: bool = True,
+        send_function: bool = True,
         send_args: bool = True,
     ) -> Callable:
         """Creates a decorator instance with the given messengers.
@@ -55,6 +56,8 @@ class Herald:
         Args:
             messengers: Messenger, or list of Messenger, to send the messages.
             send_result: Boolean indicating whether to send the result of the function.
+            send_function: Boolean indicating whether to send the name of the original \
+            calling function.
             send_args: Boolean indicating whether to send the args and kwargs that \
             were passed to the function.
 
@@ -68,6 +71,7 @@ class Herald:
                 info = TaskInfo(
                     name=func.__name__,
                     send_result=send_result,
+                    send_function=send_function,
                     send_args=send_args,
                     header="Herald: Task Status",
                     args=args,

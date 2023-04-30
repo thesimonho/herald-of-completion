@@ -16,6 +16,7 @@ class TaskInfo:
     Args:
         name: A string containing the name of the function being run.
         send_result: Boolean indicating whether results should be sent.
+        send_function: Boolean indicating whether calling function should be sent.
         send_args: Boolean indicating whether args and kwargs should be sent.
         args: Tuple containing the arguments passed to the function.
         kwargs: Dictionary containing the keyword arguments passed to the function.
@@ -26,6 +27,7 @@ class TaskInfo:
 
     name: str = ""
     send_result: bool = True
+    send_function: bool = False
     send_args: bool = True
     args: tuple = ()
     kwargs: dict = field(default_factory=dict)

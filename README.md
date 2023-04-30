@@ -91,7 +91,7 @@ from herald.utils import send_notification  # import the utility
 
 discord = DiscordMessenger()
 email = EmailMessenger()
-info = TaskInfo(header="Title", result="message", ...)  # create TaskInfo with contents of the message
+info = TaskInfo(header="subject", result="message", ...)  # create TaskInfo with contents of the message
 
 send_notification([discord, email], info, ".env")  # pass in path to your .env file, if required
 ```
