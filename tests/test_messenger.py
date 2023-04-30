@@ -39,8 +39,23 @@ def test_discord_has_url(mocker):
 
     @herald(discord)
     def get_list():
-        x = [1, 2, 3]
-        return x
+        pass
 
     get_list()
-    assert discord.webhook_url == "http://google.com"
+    assert discord.webhook_url == "https://discord.com/api/webhooks/123123/test"
+
+
+def test_discord_url_correct():
+    discord = DiscordMessenger()
+    discord.set_secrets({"WEBHOOK_URL": "http://discord.com/api/webhooks/12"})
+    discord.set_secrets({"WEBHOOK_URL": "https://discord.com/api/webhooks/12"})
+
+
+def test_discord_url_incorrect():
+    discord = DiscordMessenger()
+
+    with pytest.raises(ValueError):
+        discord.set_secrets({"WEBHOOK_URL": "https://discord.com/api/webhooks"})
+
+    with pytest.raises(ValueError):
+        discord.set_secrets({"WEBHOOK_URL": "discord.com/api/webhooks/12"})

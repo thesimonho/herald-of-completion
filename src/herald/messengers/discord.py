@@ -18,16 +18,20 @@ Typical usage example:
        pass
 """
 
+import re
+
 import requests
 
 from ..types import Messenger, TaskInfo
 from ..utils import build_arg_string, build_kwarg_string
 
 
-# TODO: validate url. add test
-# TODO: check url exists (and correct) before notifying
 class DiscordMessenger(Messenger):
     """A class used to send Discord notifications.
+
+    The webhook URL can be obtained from the server settings inside Discord. \
+    You can find instructions on how to do this here: \
+    https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks
 
     Args:
         webhook_url: String containing the URL for the Discord webhook.
@@ -45,7 +49,11 @@ class DiscordMessenger(Messenger):
         Args:
             secrets: A dictionary containing the secrets to be used by the messenger.
         """
-        self.webhook_url = secrets["WEBHOOK_URL"]
+        url = secrets["WEBHOOK_URL"]
+        if re.fullmatch(r"^http[s]?:\/\/discord.com\/api\/webhooks\/.*$", url) is None:
+            raise ValueError("Invalid webhook url.")
+        else:
+            self.webhook_url = url
 
     def notify(self, info: TaskInfo) -> None:
         """Constructs and sends a Discord notification.
