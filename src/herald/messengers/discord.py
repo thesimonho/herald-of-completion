@@ -21,6 +21,8 @@ Typical usage example:
 import requests
 
 from ..types import Messenger, TaskInfo
+from ..utils import build_arg_string, build_kwarg_string
+
 
 # TODO: validate url. add test
 # TODO: check url exists (and correct) before notifying
@@ -55,8 +57,29 @@ class DiscordMessenger(Messenger):
         Raises:
             HTTPError: An error occurred while making the HTTP request.
         """
+        msg_content = f"**{info.header}**\n"
+
+        if info.send_args:
+            args = build_arg_string(info.args)
+            kwargs = build_kwarg_string(info.kwargs)
+            call = f"{info.name}({args}, {kwargs})"
+        else:
+            call = f"{info.name}()"
+
+        if info.has_errored:
+            msg_content += (
+                f"Task has failed with an error.\n\nFunction call:\n```{call}```"
+            )
+        else:
+            msg_content += (
+                f"Task has completed successfully.\n\nFunction call:\n```{call}```"
+            )
+
+        if info.send_result:
+            msg_content += f"\nResult:\n```{info.result}```"
+
         data = {
-            "content": f"**{info.header}**\n{info.message}\n{info.result}",
+            "content": msg_content,
         }
 
         result = requests.post(self.webhook_url, json=data)

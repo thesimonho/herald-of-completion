@@ -16,6 +16,7 @@ Modules
 
   decorators
   types
+  utils
  
 Messengers
 ==========

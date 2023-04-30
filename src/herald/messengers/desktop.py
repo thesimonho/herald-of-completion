@@ -49,7 +49,15 @@ class DesktopMessenger(Messenger):
         """
         opts = {
             "title": info.header,
-            "message": info.message,
             "timeout": 10,
         }
-        notification.notify(**opts)
+
+        if info.has_errored:
+            opts["message"] = f"Task `{info.name}` failed with an error."
+        else:
+            opts["message"] = f"Task `{info.name}` finished successfully."
+
+        try:
+            notification.notify(**opts)
+        except Exception as e:
+            raise e

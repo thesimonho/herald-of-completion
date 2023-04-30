@@ -24,7 +24,6 @@ from .types import Messenger, TaskInfo
 
 # NOTE: observer pattern?
 # TODO: add notes on using messengers directly, without a decorator
-# TODO: notify passed args/kwargs option
 # TODO: allow customizable messages for each messenger
 
 
@@ -47,13 +46,18 @@ class Herald:
         self.secrets: dict = dotenv_values(secrets)
 
     def __call__(
-        self, messengers: Union[Messenger, List[Messenger]], send_result: bool = True
+        self,
+        messengers: Union[Messenger, List[Messenger]],
+        send_result: bool = True,
+        send_args: bool = True,
     ) -> Callable:
         """Creates a decorator instance with the given messengers.
 
         Args:
             messengers: Messenger, or list of Messenger, to send the messages.
             send_result: Boolean indicating whether to send the result of the function.
+            send_args: Boolean indicating whether to send the args and kwargs that \
+            were passed to the function.
 
         Returns:
             A decorator instance that can be used to wrap functions.
@@ -64,26 +68,23 @@ class Herald:
             def wrapper(*args: Any, **kwargs: Any):
                 info = TaskInfo(
                     name=func.__name__,
+                    send_result=send_result,
+                    send_args=send_args,
                     header="Herald: Task Status",
+                    args=args,
+                    kwargs=kwargs,
                 )
 
                 try:
                     result = func(*args, **kwargs)
-
-                    info.message = f"Task `{func.__name__}` has finished successfully."
                     info.has_errored = False
-                    if send_result:
-                        info.result = f"```\n{str(result)}\n```"
+                    info.result = str(result)
                     self._notify_messengers(messengers, info)
-
                     return result
                 except Exception as e:
-                    info.message = f"Task `{func.__name__}` has finished with errors."
                     info.has_errored = True
-                    if send_result:
-                        info.result = f"```\n{str(traceback.format_exc())}\n```"
+                    info.result = str(traceback.format_exc())
                     self._notify_messengers(messengers, info)
-
                     raise e
 
             return wrapper

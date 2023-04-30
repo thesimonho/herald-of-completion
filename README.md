@@ -57,17 +57,20 @@ def my_function():
 Passing `send_result=True` to the decorator will send the return value of your function through the messenger. This also includes notifying you of any exceptions that were raised:
 
 ```python
-from herald.decorators import Herald
-from herald.messengers import DiscordMessenger
-
-herald = Herald(".env")
-
-discord = DiscordMessenger()
-
-@herald(discord, send_result=True)
+@herald(email, send_result=True)  # defaults to True
 def my_function():
     a = [1, 2, 3]
     return a[100]  # if an exception is raised, `send_result=True` will also send the traceback
+```
+
+Passing `send_args=True` will show the `args` and `kwargs` the function was called with:
+
+```python
+@herald(email, send_args=True)  # defaults to True
+def my_function(var1, var2):
+    return ", ".join([var1, var2])
+
+my_function("Hello", var2="world")  # function call will be notified with all args and kwargs
 ```
 
 For more details, the full API documentation can be found here: [Documentation](https://sho-87.github.io/herald-of-completion/)

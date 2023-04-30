@@ -15,16 +15,22 @@ class TaskInfo:
 
     Args:
         name: A string containing the name of the function being run.
-        header: A string containing a summary line for the notification header.
-        message: A string containing the main body of the notification message.
+        send_result: Boolean indicating whether results should be sent.
+        send_args: Boolean indicating whether args and kwargs should be sent.
+        args: Tuple containing the arguments passed to the function.
+        kwargs: Dictionary containing the keyword arguments passed to the function.
         result: A string containing the return result of the function, or the traceback.
+        header: A string containing a summary line for the notification header.
         has_errored: A boolean indicating whether the function raised an exception.
     """
 
     name: str
-    header: str
-    message: str = ""
+    send_result: bool
+    send_args: bool
+    args: tuple
+    kwargs: dict
     result: str = ""
+    header: str = ""
     has_errored: bool = False
 
 

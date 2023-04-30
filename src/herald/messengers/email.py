@@ -23,6 +23,7 @@ import ssl
 from email.message import EmailMessage
 
 from ..types import Messenger, TaskInfo
+from ..utils import build_arg_string, build_kwarg_string
 
 
 # TODO: validate email address on init? new dataclass?
@@ -80,7 +81,23 @@ class EmailMessenger(Messenger):
         """
         msg = EmailMessage()
         msg["Subject"] = f"{info.header}"
-        msg.set_content(f"{info.message}\n\n{info.result}")
+
+        if info.send_args:
+            args = build_arg_string(info.args)
+            kwargs = build_kwarg_string(info.kwargs)
+            call = f"{info.name}({args}, {kwargs})"
+        else:
+            call = f"{info.name}()"
+
+        if info.has_errored:
+            msg_content = f"Task has failed with an error.\n\nFunction call:\n{call} "
+        else:
+            msg_content = f"Task has completed successfully.\n\nFunction call:\n{call}"
+
+        if info.send_result:
+            msg_content += f"\n\nResult:\n```{info.result}```"
+
+        msg.set_content(msg_content)
 
         context = ssl.create_default_context()
         with smtplib.SMTP(self.smtp_server, self.smtp_port) as server:
