@@ -18,6 +18,7 @@ Typical usage example:
       pass
 """
 
+import re
 import smtplib
 import ssl
 from email.message import EmailMessage
@@ -26,9 +27,6 @@ from ..types import Messenger, TaskInfo
 from ..utils import build_arg_string, build_kwarg_string
 
 
-# TODO: validate email address on init? new dataclass?
-# TODO: add test
-# TODO: check email exists (and correct) before notifying
 class EmailMessenger(Messenger):
     """A class for sending notifications via email.
 
@@ -53,6 +51,14 @@ class EmailMessenger(Messenger):
         self.smtp_starttls: bool = False
         self.smtp_user: str = ""
         self.smtp_password: str = ""
+
+        if (
+            re.fullmatch(
+                r"^[A-Za-z0-9._+\-\']+@[A-Za-z0-9.\-]+\.[A-Za-z]{2,}$", recipient
+            )
+            is None
+        ):
+            raise ValueError("Invalid email address.")
 
     def set_secrets(self, secrets: dict) -> None:
         """Sets the secrets for the EmailMessenger.

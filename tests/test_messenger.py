@@ -1,5 +1,8 @@
+import pytest
+
 from herald.decorators import Herald
-from herald.messengers import DesktopMessenger, DiscordMessenger
+from herald.messengers import (DesktopMessenger, DiscordMessenger,
+                               EmailMessenger)
 
 herald = Herald(secrets="tests/test.env")
 
@@ -15,6 +18,19 @@ def test_desktop_has_no_secrets(mocker):
 
     get_list()
     assert desktop.__dict__ == {}
+
+
+def test_email_address_correct():
+    _ = EmailMessenger("user@email.com")
+    _ = EmailMessenger("user-name@email.address.com")
+
+
+def test_email_address_incorrect():
+    with pytest.raises(ValueError):
+        _ = EmailMessenger("useremail.com")
+
+    with pytest.raises(ValueError):
+        _ = EmailMessenger("user@emailcom")
 
 
 def test_discord_has_url(mocker):
