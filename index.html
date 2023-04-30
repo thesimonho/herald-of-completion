@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Herald of Completion &mdash; Herald of Completion  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="decorators" href="_autosummary/herald.decorators.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            Herald of Completion
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">herald</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.decorators.html">decorators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.types.html">types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.utils.html">utils</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">messengers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.messengers.desktop.html">desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.messengers.discord.html">discord</a></li>
+<li class="toctree-l1"><a class="reference internal" href="_autosummary/herald.messengers.email.html">email</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Herald of Completion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Herald of Completion</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="herald-of-completion">
+<h1>Herald of Completion<a class="headerlink" href="#herald-of-completion" title="Permalink to this heading"></a></h1>
+<p><a class="reference external" href="https://pypi.org/project/herald-of-completion/"><img alt="Version" src="https://img.shields.io/github/v/release/sho-87/herald-of-completion?include_prereleases&amp;sort=semver" /></a>
+<a class="reference external" href="https://pypi.org/project/herald-of-completion/"><img alt="pypi" src="https://img.shields.io/pypi/pyversions/herald-of-completion" /></a>
+<img alt="CI" src="https://img.shields.io/github/actions/workflow/status/sho-87/herald-of-completion/lint_test.yml?branch=develop" />
+<a class="reference external" href="https://github.com/sho-87/herald-of-completion/issues"><img alt="Issues" src="https://img.shields.io/github/issues/sho-87/herald-of-completion" /></a>
+<a class="reference external" href="https://www.buymeacoffee.com/simonho"><img alt="Donate" src="https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-blue" /></a></p>
+<p align="center">
+    <img src="https://raw.githubusercontent.com/sho-87/herald-of-completion/master/docs/source/_static/herald.png" >
+</p>
+<p>Hark! The herald of completion has arrived … to let you know when your long-running tasks are done.</p>
+<p>Decorate your functions with messengers, who will send a notification to you when your function has finished running.</p>
+<p>The notification can contain a message and, optionally, the traceback if your function failed.</p>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>herald-of-completion
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p>Wrap the <code class="docutils literal notranslate"><span class="pre">&#64;herald</span></code> decorator around the function you want to be notified about:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">herald.decorators</span> <span class="kn">import</span> <span class="n">Herald</span>
+<span class="kn">from</span> <span class="nn">herald.messengers</span> <span class="kn">import</span> <span class="n">DiscordMessenger</span>
+
+<span class="n">herald</span> <span class="o">=</span> <span class="n">Herald</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)</span>  <span class="c1"># Specify location of your .env settings file</span>
+                         <span class="c1"># herald is the name of your decorator</span>
+
+<span class="n">discord</span> <span class="o">=</span> <span class="n">DiscordMessenger</span><span class="p">()</span>  <span class="c1"># create a new messenger</span>
+
+<span class="nd">@herald</span><span class="p">(</span><span class="n">discord</span><span class="p">)</span>  <span class="c1"># wrap decorator around the function, with the messenger you want to use</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+<p>You can send multiple messengers at the same time:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">herald.decorators</span> <span class="kn">import</span> <span class="n">Herald</span>
+<span class="kn">from</span> <span class="nn">herald.messengers</span> <span class="kn">import</span> <span class="n">DiscordMessenger</span><span class="p">,</span> <span class="n">EmailMessenger</span>
+
+<span class="n">herald</span> <span class="o">=</span> <span class="n">Herald</span><span class="p">(</span><span class="s2">&quot;.env&quot;</span><span class="p">)</span>
+
+<span class="n">discord</span> <span class="o">=</span> <span class="n">DiscordMessenger</span><span class="p">()</span>
+<span class="n">email</span> <span class="o">=</span> <span class="n">EmailMessenger</span><span class="p">(</span><span class="s2">&quot;recipient@email.com&quot;</span><span class="p">)</span>  <span class="c1"># some messengers take arguments</span>
+
+<span class="nd">@herald</span><span class="p">([</span><span class="n">discord</span><span class="p">,</span> <span class="n">email</span><span class="p">])</span>  <span class="c1"># multiple messengers can be used at the same time</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span>
+</pre></div>
+</div>
+<section id="options">
+<h3>Options<a class="headerlink" href="#options" title="Permalink to this heading"></a></h3>
+<p>By default, Herald will send a basic notification message indicating whether the function finished successfully or with an error. You can pass in a custom message to use instead:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@herald</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">message</span><span class="o">=</span><span class="s2">&quot;My custom message&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">send_result=True</span></code> to the decorator will send the return value of your function through the messenger. This also includes notifying you of any exceptions that were raised:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@herald</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">send_result</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># defaults to True</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">():</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">a</span><span class="p">[</span><span class="mi">100</span><span class="p">]</span>  <span class="c1"># if an exception is raised, `send_result=True` will also send the traceback</span>
+</pre></div>
+</div>
+<p>Passing <code class="docutils literal notranslate"><span class="pre">send_args=True</span></code> will show the <code class="docutils literal notranslate"><span class="pre">args</span></code> and <code class="docutils literal notranslate"><span class="pre">kwargs</span></code> the function was called with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nd">@herald</span><span class="p">(</span><span class="n">email</span><span class="p">,</span> <span class="n">send_args</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># defaults to True</span>
+<span class="k">def</span> <span class="nf">my_function</span><span class="p">(</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">):</span>
+    <span class="k">return</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">var1</span><span class="p">,</span> <span class="n">var2</span><span class="p">])</span>
+
+<span class="n">my_function</span><span class="p">(</span><span class="s2">&quot;Hello&quot;</span><span class="p">,</span> <span class="n">var2</span><span class="o">=</span><span class="s2">&quot;world&quot;</span><span class="p">)</span>  <span class="c1"># function call will be notified with all args and kwargs</span>
+</pre></div>
+</div>
+</section>
+<section id="manual-notifications">
+<h3>Manual notifications<a class="headerlink" href="#manual-notifications" title="Permalink to this heading"></a></h3>
+<p>There may be times where you want to send a notification without using a decorator / tying it to a specific function.</p>
+<p>A utility function, <code class="docutils literal notranslate"><span class="pre">send_notification()</span></code>, can be used for this purpose. To use this, you’ll need to construct your own <code class="docutils literal notranslate"><span class="pre">TaskInfo</span></code> object (see: <a class="reference external" href="https://github.com/sho-87/herald-of-completion/blob/master/src/herald/types.py">fields</a>) containing the notification contents:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">herald.types</span> <span class="kn">import</span> <span class="n">TaskInfo</span>
+<span class="kn">from</span> <span class="nn">herald.utils</span> <span class="kn">import</span> <span class="n">send_notification</span>  <span class="c1"># import the utility</span>
+
+<span class="n">discord</span> <span class="o">=</span> <span class="n">DiscordMessenger</span><span class="p">()</span>
+<span class="n">email</span> <span class="o">=</span> <span class="n">EmailMessenger</span><span class="p">()</span>
+<span class="n">info</span> <span class="o">=</span> <span class="n">TaskInfo</span><span class="p">(</span><span class="n">message</span><span class="o">=</span><span class="s2">&quot;custom message&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>  <span class="c1"># create TaskInfo with contents of the message</span>
+
+<span class="n">send_notification</span><span class="p">([</span><span class="n">discord</span><span class="p">,</span> <span class="n">email</span><span class="p">],</span> <span class="n">info</span><span class="p">,</span> <span class="s2">&quot;.env&quot;</span><span class="p">)</span>  <span class="c1"># pass in path to your .env file, if required</span>
+</pre></div>
+</div>
+<p>For more details about usage, the full API documentation can be found here: <a class="reference external" href="https://sho-87.github.io/herald-of-completion/">documentation</a></p>
+</section>
+<section id="env-settings">
+<h3>.env settings<a class="headerlink" href="#env-settings" title="Permalink to this heading"></a></h3>
+<p>Some messengers require credentials and/or additional settings to work. These values are stored in a <code class="docutils literal notranslate"><span class="pre">.env</span></code> file.</p>
+<p>Pass the location of this file to the <code class="docutils literal notranslate"><span class="pre">Herald</span></code> constructor, which will pass the values down to your messengers.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">.env</span></code> file should look something like <a class="reference external" href="https://github.com/sho-87/herald-of-completion/blob/master/tests/test.env">this</a>. You only need settings for the messengers you want to use:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span># Discord settings
+WEBHOOK_URL=&quot;https://discord.com/...&quot;
+
+# Email settings
+SMTP_SERVER=&quot;smtp.gmail.com&quot;
+SMTP_PORT=587
+SMTP_STARTTLS=True
+SMTP_USER=&quot;user@gmail.com&quot;
+SMTP_PASSWORD=&quot;password&quot;
+</pre></div>
+</div>
+<p>Given the contents of this file, make sure you don’t check it in to version control!</p>
+<section id="explanation">
+<h4>Explanation<a class="headerlink" href="#explanation" title="Permalink to this heading"></a></h4>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Value Type</p></th>
+<th class="head"><p>Messenger</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WEBHOOK_URL</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Discord</p></td>
+<td><p>The webhook URL for your server. Instructions <a class="reference external" href="https://support.discord.com/hc/en-us/articles/228383668-Intro-to-Webhooks">here</a></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMTP_SERVER</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Email</p></td>
+<td><p>STMP server of the email address you want to send <em>from</em></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SMTP_PORT</span></code></p></td>
+<td><p>int</p></td>
+<td><p>Email</p></td>
+<td><p>STMP port of the email address you want to send <em>from</em></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMTP_STARTTLS</span></code></p></td>
+<td><p>bool</p></td>
+<td><p>Email</p></td>
+<td><p>Whether your server uses STARTTLS for authentication</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">SMTP_USER</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Email</p></td>
+<td><p>Your email username</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">SMTP_PASSWORD</span></code></p></td>
+<td><p>str</p></td>
+<td><p>Email</p></td>
+<td><p>Your email password</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+</section>
+<section id="contribution">
+<h2>Contribution<a class="headerlink" href="#contribution" title="Permalink to this heading"></a></h2>
+<section id="creating-a-new-messenger">
+<h3>Creating a new messenger<a class="headerlink" href="#creating-a-new-messenger" title="Permalink to this heading"></a></h3>
+<p>Creating a new messenger is straightforward and requires only 1 file:</p>
+<ol class="arabic simple">
+<li><p>Create a new module in <code class="docutils literal notranslate"><span class="pre">src/herald/messengers/</span></code></p></li>
+<li><p>Your class name should take the form <code class="docutils literal notranslate"><span class="pre">&lt;Name&gt;Messenger</span></code> and inherit the base <code class="docutils literal notranslate"><span class="pre">Messenger</span></code> abstract class. Example: <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">DiscordMessenger(Messenger):</span> <span class="pre">...</span></code></p></li>
+<li><p>Your class must implement the abstract methods defined in the base <code class="docutils literal notranslate"><span class="pre">Messenger</span></code> class <a class="reference external" href="https://github.com/sho-87/herald-of-completion/blob/develop/src/herald/types.py">here</a></p></li>
+<li><p>Those methods define how your messenger sets it’s secret values, and how it uses those settings to send a notification</p></li>
+<li><p>Finally, import your messenger in the <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file <a class="reference external" href="https://github.com/sho-87/herald-of-completion/blob/develop/src/herald/messengers/__init__.py">here</a>. This shortens the import path for users.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">notify()</span></code> method of your messenger will receive a <a class="reference external" href="https://github.com/sho-87/herald-of-completion/blob/master/src/herald/types.py">TaskInfo</a> dataclass object. You can use the dataclass’ fields (e.g. <code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">header</span></code>) to construct custom notification messages.</p>
+<p><strong>Note</strong>: Pull requests should be made to the <code class="docutils literal notranslate"><span class="pre">develop</span></code> branch.</p>
+</section>
+<section id="tests">
+<h3>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h3>
+<p>Unit and integration tests are located <a class="reference external" href="https://github.com/sho-87/herald-of-completion/tree/develop/tests">here</a>.</p>
+<p>Tests should be run using <code class="docutils literal notranslate"><span class="pre">pytest</span></code>.</p>
+</section>
+<section id="code-style">
+<h3>Code style<a class="headerlink" href="#code-style" title="Permalink to this heading"></a></h3>
+<p>The project is formatted using the <code class="docutils literal notranslate"><span class="pre">black</span></code> formatter.</p>
+<p>Docstrings should follow the <a class="reference external" href="https://google.github.io/styleguide/pyguide.html#38-comments-and-docstrings">Google style</a> (with a few tweaks to help with Sphinx generation of documentation pages). Use the docstrings throughout the codebase as a guide.</p>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<span class="target" id="module-herald"></span><section id="modules">
+<h1>Modules<a class="headerlink" href="#modules" title="Permalink to this heading"></a></h1>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/herald.decorators.html#module-herald.decorators" title="herald.decorators"><code class="xref py py-obj docutils literal notranslate"><span class="pre">decorators</span></code></a></p></td>
+<td><p>Main module containing the decorator definition.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/herald.types.html#module-herald.types" title="herald.types"><code class="xref py py-obj docutils literal notranslate"><span class="pre">types</span></code></a></p></td>
+<td><p>Defines all types, base classes, and dataclasses used in the package.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/herald.utils.html#module-herald.utils" title="herald.utils"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils</span></code></a></p></td>
+<td><p>Helper functions used throughout the package.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="messengers">
+<h1>Messengers<a class="headerlink" href="#messengers" title="Permalink to this heading"></a></h1>
+<table class="autosummary longtable docutils align-default">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/herald.messengers.desktop.html#module-herald.messengers.desktop" title="herald.messengers.desktop"><code class="xref py py-obj docutils literal notranslate"><span class="pre">messengers.desktop</span></code></a></p></td>
+<td><p>Module for the Desktop messenger.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="_autosummary/herald.messengers.discord.html#module-herald.messengers.discord" title="herald.messengers.discord"><code class="xref py py-obj docutils literal notranslate"><span class="pre">messengers.discord</span></code></a></p></td>
+<td><p>Module for the Discord messenger.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="_autosummary/herald.messengers.email.html#module-herald.messengers.email" title="herald.messengers.email"><code class="xref py py-obj docutils literal notranslate"><span class="pre">messengers.email</span></code></a></p></td>
+<td><p>Module for the Email messenger.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<hr class="docutils" />
+<section id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this heading"></a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="_autosummary/herald.decorators.html" class="btn btn-neutral float-right" title="decorators" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Simon Ho.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+﻿email
+=====
+
+.. automodule:: herald.messengers.email
+   :members:
+   :show-inheritance:
+   :private-members:
+   :special-members: __init__, __call__
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :recursive:
+      :template: class.rst
+      :nosignatures:
+   
+      EmailMessenger
+   
+   
+
+   
+   
+   

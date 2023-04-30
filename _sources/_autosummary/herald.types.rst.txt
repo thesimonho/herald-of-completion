@@ -1,0 +1,27 @@
+﻿types
+=====
+
+.. automodule:: herald.types
+   :members:
+   :show-inheritance:
+   :private-members:
+   :special-members: __init__, __call__
+
+   
+   
+   .. rubric:: Classes
+
+   .. autosummary::
+      :recursive:
+      :template: class.rst
+      :nosignatures:
+   
+      Messenger
+      Secrets
+      TaskInfo
+   
+   
+
+   
+   
+   

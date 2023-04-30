@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>utils &mdash; Herald of Completion  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="desktop" href="herald.messengers.desktop.html" />
+    <link rel="prev" title="types" href="herald.types.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Herald of Completion
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">herald</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="herald.decorators.html">decorators</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herald.types.html">types</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">utils</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#herald.utils.truncate"><code class="docutils literal notranslate"><span class="pre">truncate()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herald.utils.build_arg_string"><code class="docutils literal notranslate"><span class="pre">build_arg_string()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herald.utils.build_kwarg_string"><code class="docutils literal notranslate"><span class="pre">build_kwarg_string()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herald.utils.load_secrets"><code class="docutils literal notranslate"><span class="pre">load_secrets()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#herald.utils.send_notification"><code class="docutils literal notranslate"><span class="pre">send_notification()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">messengers</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="herald.messengers.desktop.html">desktop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herald.messengers.discord.html">discord</a></li>
+<li class="toctree-l1"><a class="reference internal" href="herald.messengers.email.html">email</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Herald of Completion</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">utils</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/_autosummary/herald.utils.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-herald.utils">
+<span id="utils"></span><h1>utils<a class="headerlink" href="#module-herald.utils" title="Permalink to this heading"></a></h1>
+<p>Helper functions used throughout the package.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="herald.utils.truncate">
+<span class="sig-name descname"><span class="pre">truncate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/herald/utils.html#truncate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#herald.utils.truncate" title="Permalink to this definition"></a></dt>
+<dd><p>Truncate an input value to custom typed representation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>input</strong> (<em>T</em>) – Value to be truncated. Can be of any type.</p></li>
+<li><p><strong>length</strong> (<em>int</em>) – Length to truncate the value to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Truncated representation of the input.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><em>T</em> | str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="herald.utils.build_arg_string">
+<span class="sig-name descname"><span class="pre">build_arg_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/herald/utils.html#build_arg_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#herald.utils.build_arg_string" title="Permalink to this definition"></a></dt>
+<dd><p>Create string representation of an args tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>args</strong> (<em>tuple</em>) – Tuple of arguments to be converted to a string.</p></li>
+<li><p><strong>truncate_length</strong> (<em>int</em>) – Length to truncate the string to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String representation of the args.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="herald.utils.build_kwarg_string">
+<span class="sig-name descname"><span class="pre">build_kwarg_string</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kwargs</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">truncate_length</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/herald/utils.html#build_kwarg_string"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#herald.utils.build_kwarg_string" title="Permalink to this definition"></a></dt>
+<dd><p>Create string representation of a kwargs dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kwargs</strong> (<em>dict</em>) – Dictionary of keyword arguments to be converted to a string.</p></li>
+<li><p><strong>truncate_length</strong> (<em>int</em>) – Length to truncate the string to.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>String representation of the kwargs dict.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="herald.utils.load_secrets">
+<span class="sig-name descname"><span class="pre">load_secrets</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.env'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/herald/utils.html#load_secrets"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#herald.utils.load_secrets" title="Permalink to this definition"></a></dt>
+<dd><p>Load secrets from a .env file.</p>
+<p>The contents of the .env file are stored in a Secrets object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>env</strong> (<em>str</em>) – Path to the .env file.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="herald.types.html#herald.types.Secrets" title="herald.types.Secrets"><em>Secrets</em></a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="herald.utils.send_notification">
+<span class="sig-name descname"><span class="pre">send_notification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">messengers</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">info</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">env</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'.env'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/herald/utils.html#send_notification"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#herald.utils.send_notification" title="Permalink to this definition"></a></dt>
+<dd><p>Send notification without using a decorator.</p>
+<p>This function can be used to send a notification without using a decorator. This     allows you to send a notification at any point, without tying it to a specific     function.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>messengers</strong> (<a class="reference internal" href="herald.types.html#herald.types.Messenger" title="herald.types.Messenger"><em>Messenger</em></a><em> | </em><em>List</em><em>[</em><a class="reference internal" href="herald.types.html#herald.types.Messenger" title="herald.types.Messenger"><em>Messenger</em></a><em>]</em>) – Messenger, or list of Messenger, that will send the notification.</p></li>
+<li><p><strong>info</strong> (<a class="reference internal" href="herald.types.html#herald.types.TaskInfo" title="herald.types.TaskInfo"><em>TaskInfo</em></a>) – TaskInfo object containing information to send in the notification.</p></li>
+<li><p><strong>env</strong> (<em>str</em>) – Path to the .env file containing the secrets to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="herald.types.html" class="btn btn-neutral float-left" title="types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="herald.messengers.desktop.html" class="btn btn-neutral float-right" title="desktop" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Simon Ho.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
