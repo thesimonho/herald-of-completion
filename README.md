@@ -6,6 +6,10 @@
 [![Issues](https://img.shields.io/github/issues/sho-87/herald-of-completion)](https://github.com/sho-87/herald-of-completion/issues)
 [![Donate](https://img.shields.io/badge/Buy%20me%20a%20coffee-donate-blue "Donate")](https://www.buymeacoffee.com/simonho)
 
+<p align="center">
+    <img src="https://raw.githubusercontent.com/sho-87/herald-of-completion/master/docs/source/_static/herald.png" >
+</p>
+
 Hark! The herald of completion has arrived ... to let you know when your long-running tasks are done.
 
 Decorate your functions with messengers, who will send a notification to you when your function has finished running.
