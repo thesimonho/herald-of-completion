@@ -23,7 +23,6 @@ from dotenv import dotenv_values
 from .types import Messenger, TaskInfo
 
 # NOTE: observer pattern?
-# TODO: add notes on using messengers directly, without a decorator
 # TODO: allow customizable messages for each messenger
 
 

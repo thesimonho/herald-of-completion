@@ -58,6 +58,8 @@ def my_function():
     return a
 ```
 
+### Options
+
 Passing `send_result=True` to the decorator will send the return value of your function through the messenger. This also includes notifying you of any exceptions that were raised:
 
 ```python
@@ -77,7 +79,24 @@ def my_function(var1, var2):
 my_function("Hello", var2="world")  # function call will be notified with all args and kwargs
 ```
 
-For more details, the full API documentation can be found here: [Documentation](https://sho-87.github.io/herald-of-completion/)
+### Manual notifications
+
+There may be times where you want to send a notification without using a decorator / tying it to a specific function.
+
+A utility function, `send_notification()` can be used for this purpose. To use this, you'll need to construct your own `TaskInfo` object containing the notification contents:
+
+```python
+from herald.types import TaskInfo
+from herald.utils import send_notification  # import the utility
+
+discord = DiscordMessenger()
+email = EmailMessenger()
+info = TaskInfo(header="Title", result="message", ...)  # create TaskInfo with contents of the message
+
+send_notification([discord, email], info, ".env")  # pass in path to your .env file, if required
+```
+
+For more details about usage, the full API documentation can be found here: [documentation](https://sho-87.github.io/herald-of-completion/)
 
 ### .env settings
 

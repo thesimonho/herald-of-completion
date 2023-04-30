@@ -1,8 +1,8 @@
 """Defines all types, base classes, and dataclasses used in the package."""
 from abc import ABC, abstractmethod
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 
-# NOTE: dataclass for secrets?
+# NOTE: dataclass for secrets
 
 
 @dataclass
@@ -24,11 +24,11 @@ class TaskInfo:
         has_errored: A boolean indicating whether the function raised an exception.
     """
 
-    name: str
-    send_result: bool
-    send_args: bool
-    args: tuple
-    kwargs: dict
+    name: str = ""
+    send_result: bool = True
+    send_args: bool = True
+    args: tuple = ()
+    kwargs: dict = field(default_factory=dict)
     result: str = ""
     header: str = ""
     has_errored: bool = False

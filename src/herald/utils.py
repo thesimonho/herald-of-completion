@@ -1,6 +1,10 @@
 """Helper functions used throughout the package."""
 
-from typing import TypeVar, Union
+from typing import List, TypeVar, Union
+
+from dotenv import dotenv_values
+
+from .types import Messenger, TaskInfo
 
 T = TypeVar("T")
 
@@ -75,3 +79,31 @@ def build_kwarg_string(kwargs: dict, truncate_length: int = 10) -> str:
             result += f"{key}={truncated}, "
     result = result[:-2]  # remove last comma
     return result
+
+
+def send_notification(
+    messengers: Union[Messenger, List[Messenger]], info: TaskInfo, env: str = ".env"
+) -> None:
+    """Send notification without using a decorator.
+
+    This function can be used to send a notification without using a decorator. This \
+    allows you to send a notification at any point, without tying it to a specific \
+    function.
+
+    Args:
+        messengers: Messenger, or list of Messenger, that will send the notification.
+        info: TaskInfo object containing information to send in the notification.
+        env: Path to the .env file containing the secrets to use.
+    """
+    try:
+        secrets = dotenv_values(env)
+    except FileNotFoundError:
+        secrets = {}
+
+    if isinstance(messengers, list):
+        for messenger in messengers:
+            messenger.set_secrets(secrets)
+            messenger.notify(info)
+    else:
+        messengers.set_secrets(secrets)
+        messengers.notify(info)
