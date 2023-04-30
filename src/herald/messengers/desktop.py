@@ -52,10 +52,13 @@ class DesktopMessenger(Messenger):
             "timeout": 10,
         }
 
-        if info.has_errored:
-            opts["message"] = f"Task `{info.name}` failed with an error."
+        if info.message:
+            opts["message"] = info.message
         else:
-            opts["message"] = f"Task `{info.name}` finished successfully."
+            if info.has_errored:
+                opts["message"] = f"Task `{info.name}` failed with an error."
+            else:
+                opts["message"] = f"Task `{info.name}` finished successfully."
 
         try:
             notification.notify(**opts)

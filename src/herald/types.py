@@ -1,6 +1,7 @@
 """Defines all types, base classes, and dataclasses used in the package."""
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
+from typing import Union
 
 # NOTE: dataclass for secrets
 
@@ -15,6 +16,7 @@ class TaskInfo:
 
     Args:
         name: A string containing the name of the function being run.
+        message: A string containing a custom message to be sent.
         send_result: Boolean indicating whether results should be sent.
         send_function: Boolean indicating whether calling function should be sent.
         send_args: Boolean indicating whether args and kwargs should be sent.
@@ -26,7 +28,8 @@ class TaskInfo:
     """
 
     name: str = ""
-    send_result: bool = True
+    message: Union[str, None] = None
+    send_result: bool = False
     send_function: bool = False
     send_args: bool = True
     args: tuple = ()

@@ -60,6 +60,12 @@ def my_function():
 
 ### Options
 
+By default, Herald will send a basic notification message indicating whether the function finished successfully or with an error. You can pass in a custom message to use instead:
+
+```python
+@herald(email, message="My custom message")
+```
+
 Passing `send_result=True` to the decorator will send the return value of your function through the messenger. This also includes notifying you of any exceptions that were raised:
 
 ```python
@@ -91,7 +97,7 @@ from herald.utils import send_notification  # import the utility
 
 discord = DiscordMessenger()
 email = EmailMessenger()
-info = TaskInfo(header="subject", result="message", ...)  # create TaskInfo with contents of the message
+info = TaskInfo(message="custom message", ...)  # create TaskInfo with contents of the message
 
 send_notification([discord, email], info, ".env")  # pass in path to your .env file, if required
 ```

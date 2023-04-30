@@ -23,7 +23,6 @@ from dotenv import dotenv_values
 from .types import Messenger, TaskInfo
 
 # NOTE: observer pattern?
-# TODO: allow customizable messages for each messenger
 
 
 class Herald:
@@ -47,6 +46,7 @@ class Herald:
     def __call__(
         self,
         messengers: Union[Messenger, List[Messenger]],
+        message: Union[str, None] = None,
         send_result: bool = True,
         send_function: bool = True,
         send_args: bool = True,
@@ -55,6 +55,7 @@ class Herald:
 
         Args:
             messengers: Messenger, or list of Messenger, to send the messages.
+            message: String containing a custom message to send.
             send_result: Boolean indicating whether to send the result of the function.
             send_function: Boolean indicating whether to send the name of the original \
             calling function.
@@ -70,6 +71,7 @@ class Herald:
             def wrapper(*args: Any, **kwargs: Any):
                 info = TaskInfo(
                     name=func.__name__,
+                    message=message,
                     send_result=send_result,
                     send_function=send_function,
                     send_args=send_args,
