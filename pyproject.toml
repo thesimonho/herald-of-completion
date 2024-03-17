@@ -1,3 +1,24 @@
+[tool.poetry]
+name = "herald-of-completion"
+version = "0.3.0"
+description = "Hark! The herald of completion has arrived ... to let you know when your long-running tasks are done."
+authors = ["Simon Ho <simonho.ubc@gmail.com>"]
+license = "GPL-3.0-only"
+readme = "README.md"
+packages = [
+    { include = "herald", from = "src" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+requests = "^2.31.0"
+python-dotenv = "^1.0.1"
+plyer = "^2.1.0"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+pytest-mock = "^3.12.0"
+
 [build-system]
-requires = ["setuptools"]
-build-backend = "setuptools.build_meta"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
